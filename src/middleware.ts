@@ -1,34 +1,56 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { getToken } from 'next-auth/jwt' // 1. Bu importu ekleyin
 
-// Desteklenen diller
 const locales = ['az', 'en', 'ru']
 const defaultLocale = 'az'
 
-export function middleware(request: NextRequest) {
+// 2. Fonksiyonu 'async' yapın (getToken kullanacağımız için)
+export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname
 
-  // 1. Eğer gidilen yol admin, api veya statik dosya ise KARIŞMA
+  // --- YENİ: ADMIN GÜVENLİK KONTROLÜ ---
+  if (pathname.startsWith('/admin')) {
+    // Kullanıcının oturum açıp açmadığını kontrol et
+    // (Bunun çalışması için .env dosyanızda NEXTAUTH_SECRET tanımlı olmalı)
+    const token = await getToken({ req: request })
+    const isLoginPage = pathname === '/admin/login'
+
+    // A) Kullanıcı giriş yapmamışsa ve giriş sayfasında değilse -> Login'e at
+    if (!token && !isLoginPage) {
+      return NextResponse.redirect(new URL('/admin/login', request.url))
+    }
+
+    // B) Kullanıcı zaten giriş yapmışsa ve Login sayfasındaysa -> Dashboard'a at
+    if (token && isLoginPage) {
+      return NextResponse.redirect(new URL('/admin/dashboard', request.url))
+    }
+    
+    // Admin rotasındayız ve yetkiliyiz. 
+    // Aşağıdaki dil (i18n) kodlarına girmemek için burada işlemi bitiriyoruz.
+    return
+  }
+  // --------------------------------------
+
+  // 3. Eğer gidilen yol api veya statik dosya ise KARIŞMA
+  // (Not: 'admin'i buradan kaldırdık çünkü yukarıda özel olarak ele aldık)
   if (
-    pathname.startsWith('/admin') || // <--- BURASI ÇOK ÖNEMLİ
     pathname.startsWith('/api') ||
     pathname.startsWith('/_next') ||
-    pathname.startsWith('/images') || // Resimler için
+    pathname.startsWith('/images') ||
     pathname === '/favicon.ico'
   ) {
     return
   }
 
-  // 2. URL'de dil kodu var mı? (az, en, ru)
+  // 4. URL'de dil kodu var mı? (az, en, ru)
   const pathnameIsMissingLocale = locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   )
 
-  // 3. Dil kodu yoksa, varsayılan dili ekle ve yönlendir
+  // 5. Dil kodu yoksa, varsayılan dili ekle ve yönlendir
   if (pathnameIsMissingLocale) {
     const locale = defaultLocale
-
-    // Mevcut URL'yi alıp başına dili ekle
     return NextResponse.redirect(
       new URL(`/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url)
     )
@@ -36,18 +58,10 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Matcher: Middleware'in hangi yollarda çalışacağını belirler
-  // Burada negatif regex (negative lookahead) kullanarak hariç tutuyoruz
+  // Matcher: Middleware'in hangi yollarda çalışacağını belirler.
+  // ÖNEMLİ: 'admin' kelimesini buradaki hariç tutulanlar listesinden SİLDİK.
+  // Artık middleware admin sayfalarında da devreye girecek.
   matcher: [
-    /*
-     * Aşağıdakiler HARİÇ tüm request yollarını eşle:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - images (public folder images)
-     * - admin (Admin panel) <--- YENİ EKLENEN
-     * - favicon.ico (favicon file)
-     */
-    '/((?!api|_next/static|_next/image|images|favicon.ico|admin).*)',
+    '/((?!api|_next/static|_next/image|images|favicon.ico).*)',
   ],
 }

@@ -12,7 +12,6 @@ export default function AdminSidebar() {
         { name: "Ana Panel", href: "/admin/dashboard", icon: "📊" },
         { name: "Məhsullar", href: "/admin/products", icon: "👗" },
         { name: "Kateqoriyalar", href: "/admin/categories", icon: "🏷️" },
-        { name: "Sayt Ayarları", href: "/admin/settings", icon: "⚙️" },
     ]
 
     return (

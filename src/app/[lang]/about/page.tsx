@@ -18,7 +18,7 @@ export default async function AboutPage({ params }: Props) {
                 <div className="relative h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-700 ease-out order-2 lg:order-1">
                     {/* Unsplash'ten terzi/kumaş görseli */}
                     <Image
-                        src="https://images.unsplash.com/photo-1550614000-4b9519e0037a?q=80&w=1000&auto=format&fit=crop"
+                        src="/images/aboutphoto.png"
                         alt="MaidəTekstil Atelier"
                         fill
                         className="object-cover"

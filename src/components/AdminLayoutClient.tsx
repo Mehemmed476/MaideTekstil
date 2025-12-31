@@ -1,11 +1,21 @@
 "use client"
 
 import { useState } from "react"
+import { usePathname } from "next/navigation" // 1. Bu satırı ekle
 import AdminSidebar from "./AdminSidebar"
 
 export default function AdminLayoutClient({ children }: { children: React.ReactNode }) {
     const [isSidebarOpen, setSidebarOpen] = useState(false)
+    const pathname = usePathname() // 2. Mevcut yolu al
 
+    // 3. Eğer Login sayfasındaysak, Sidebar'lı düzeni ASLA gösterme.
+    // Direkt olarak login sayfasının kendisini (children) döndür.
+    // Böylece login sayfasındaki siyah arka plan ve ortalama bozulmaz.
+    if (pathname === "/admin/login") {
+        return <>{children}</>
+    }
+
+    // Diğer tüm admin sayfaları için standart panel düzeni:
     return (
         <div className="flex min-h-screen bg-gray-100 text-black relative">
 
