@@ -1,0 +1,64 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 1. ADMIN USER
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String   
+  createdAt DateTime @default(now())
+}
+
+// 2. KATEQORIYALAR (YENİ)
+model Category {
+  id        Int       @id @default(autoincrement())
+  slug      String    @unique // URL üçün (meselen: silk, cotton)
+  title     Json      // { az: "İpək", en: "Silk" }
+  products  Product[] // Bir kateqoriyada çoxlu məhsul ola bilər
+  createdAt DateTime  @default(now())
+}
+
+// 3. MƏHSULLAR (YENİLƏNDİ)
+model Product {
+  id          Int      @id @default(autoincrement())
+  price       Float
+  image       String   
+  
+  // Əlaqəni quraq: Artıq "string" yox, Category modelinə bağlıdır
+  categoryId  Int
+  category    Category @relation(fields: [categoryId], references: [id])
+  
+  title       Json     
+  description Json
+  specs       Json     
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 4. SAYT AYARLARI (YENİ - Dynamic Settings)
+model SiteSetting {
+  id          Int    @id @default(1)
+  
+  // Haqqımızda
+  aboutTitle    Json
+  aboutText     Json
+  aboutStats    Json // { years: "15", clients: "500" }
+  aboutImage    String? // Haqqımızda şəkli də dəyişə bilsin
+
+  // Əlaqə & Footer
+  email         String
+  phone         String
+  address       Json
+  socialInstagram String?
+  socialWhatsapp  String?
+  socialFacebook  String?
+}

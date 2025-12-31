@@ -1,0 +1,59 @@
+{
+  "navigation": {
+    "home": "Ana Səhifə",
+    "products": "Kataloq",
+    "about": "Haqqımızda",
+    "contact": "Əlaqə"
+  },
+  "home": {
+    "est": "Est. 2024 — Bakı",
+    "hero_line1": "Parçanın",
+    "hero_span": "Sənət",
+    "hero_line2": "Forması.",
+    "description": "MaidəTekstil ilə toxumaların, rənglərin və keyfiyyətin ən saf halını kəşf edin.",
+    "cta_collection": "KOLLEKSİYA",
+    "cta_contact": "ƏLAQƏ",
+    "img_caption_title": "İpək & Satin",
+    "img_caption_sub": "YENİ MÖVSÜM"
+  },
+  "products": {
+    "title": "Kolleksiya",
+    "filters": "Filtrlər",
+    "category": "Kateqoriya",
+    "price_range": "Qiymət Aralığı",
+    "all": "Hamısı",
+    "silk": "İpək",
+    "cotton": "Pambıq",
+    "velvet": "Məxmər",
+    "linen": "Kətan",
+    "currency": "₼",
+    "search": "Axtar...",
+    "no_results": "Nəticə tapılmadı."
+  },
+  "footer": {
+    "about_text": "MaidəTekstil, keyfiyyət və zərifliyi bir araya gətirən premium parça kolleksiyaları təqdim edir.",
+    "quick_links": "Kəşf Et",
+    "contact": "Əlaqə",
+    "rights": "Bütün hüquqlar qorunur.",
+    "address": "Atatürk prospekti, Bakı, Azərbaycan"
+  },
+  "about": {
+    "title": "Hekayəmiz",
+    "subtitle": "Ənənədən Gələcəyə",
+    "text1": "MaidəTekstil, illərin təcrübəsini müasir toxuculuq texnologiyaları ilə birləşdirən, Bakının qəlbində yerləşən eksklüziv parça atelyesidir.",
+    "text2": "Bizim üçün parça sadəcə bir material deyil, toxunma sənətidir. Hər bir kolleksiyamız, dünyanın ən keyfiyyətli ipliklərindən seçilərək diqqətlə hazırlanır.",
+    "stat1": "İllik Təcrübə",
+    "stat2": "Məmnun Müştəri",
+    "stat3": "Premium Məhsul"
+  },
+  "contact": {
+    "title": "Əlaqə",
+    "subtitle": "Bizimlə əlaqə saxlayın",
+    "form_name": "Adınız",
+    "form_email": "E-poçt",
+    "form_message": "Mesajınız",
+    "btn_send": "GÖNDƏR",
+    "info_title": "Məlumat",
+    "visit_us": "Bizi ziyarət edin"
+  }
+}

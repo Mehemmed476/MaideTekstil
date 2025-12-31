@@ -1,0 +1,59 @@
+{
+    "navigation": {
+        "home": "Home",
+        "products": "Catalog",
+        "about": "About Us",
+        "contact": "Contact"
+    },
+    "home": {
+        "est": "Est. 2024 — Baku",
+        "hero_line1": "Fabric's",
+        "hero_span": "Art",
+        "hero_line2": "Form.",
+        "description": "Discover the purest form of textures, colors, and quality with MaidəTekstil.",
+        "cta_collection": "VIEW COLLECTION",
+        "cta_contact": "CONTACT US",
+        "img_caption_title": "Silk & Satin",
+        "img_caption_sub": "NEW SEASON"
+    },
+    "products": {
+        "title": "Collection",
+        "filters": "Filters",
+        "category": "Category",
+        "price_range": "Price Range",
+        "all": "All",
+        "silk": "Silk",
+        "cotton": "Cotton",
+        "velvet": "Velvet",
+        "linen": "Linen",
+        "currency": "$",
+        "search": "Search...",
+        "no_results": "No results found."
+    },
+    "footer": {
+        "about_text": "MaidəTekstil presents premium fabric collections combining quality and elegance.",
+        "quick_links": "Discover",
+        "contact": "Contact",
+        "rights": "All rights reserved.",
+        "address": "Ataturk Avenue, Baku, Azerbaijan"
+    },
+    "about": {
+        "title": "Our Story",
+        "subtitle": "From Tradition to Future",
+        "text1": "MaidəTekstil is an exclusive fabric atelier located in the heart of Baku, combining years of experience with modern weaving technologies.",
+        "text2": "For us, fabric is not just a material, it is the art of touch. Each of our collections is carefully curated from the world's finest yarns.",
+        "stat1": "Years Experience",
+        "stat2": "Happy Clients",
+        "stat3": "Premium Products"
+    },
+    "contact": {
+        "title": "Contact",
+        "subtitle": "Get in touch with us",
+        "form_name": "Your Name",
+        "form_email": "Email",
+        "form_message": "Your Message",
+        "btn_send": "SEND",
+        "info_title": "Information",
+        "visit_us": "Visit Us"
+    }
+}
